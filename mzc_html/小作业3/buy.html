@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0 auto;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				height: 100%
+			}
+			
+			.seatContainer {
+				width: 550px;
+				min-height: 500px;
+			}
+			
+			.seat-wrap {
+				width: 700px;
+				height: 700px;
+				/*background: pink;*/
+			}
+			
+			.seattitle {
+				margin: 15px auto;
+				width: 100px;
+			}
+			
+			.seats {
+				width: 550px;
+				height: 350px;
+			}
+			
+			.seat-cell {
+				margin: 0 auto;
+				width: 46px;
+				height: 33px;
+				position: absolute;
+				/*background: white;*/
+			}
+			
+			.empty-seat {
+				background-image: url(img/emptyseat.png);
+			}
+			
+			.cant-seat {
+				background-image: url(img/cantseat.png);
+			}
+			
+			.choose-seat {
+				background-image: url(img/chooseseat.png);
+			}
+			
+			.seatinfo {
+				width: 100%;
+				height: 25px;
+			}
+			
+			.seatinfo ul {
+				list-style: none;
+				display: flex;
+				flex-direction: row;
+				/*justify-content:flex-start;*/
+			}
+			
+			.seatinfo li {
+				display: inline;
+				line-height: 25px;
+				height: 25px;
+				font-size: 22px;
+				/*margin-right: 10px;*/
+			}
+			
+			.seatinfo li img {
+				height: 25px;
+				float: left;
+			}
+			
+			
+			.numnode {
+				display: block;
+				position: absolute;
+				margin-bottom: 8px;
+				height: 22px;
+				width: 22px;
+				text-align: center;
+				border-radius: 33px;
+				background-color: gray;
+			}
+		</style>
+		<script src="lib/jquery/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-fixed-top" style="background: #FF7F7F;">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header row">
+					<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="movie.html"></a>
+					<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6"></a>
+					<a class="col-xs-2"></a>
+					<a class="glyphicon glyphicon-share col-xs-2 col-sm-1 col-md-1 col-lg-1" style="margin-top: 20px;color: white;" href="#"></a>
+				</div>
+			</div>
+		</nav>
+		<div style="height: 100px; margin-top: 100px;" class="container">
+			<p>厕所英雄</p>
+			<p style="font-size: small; color: #B4B4B4;">今天06-11 10：10 （原版2D）</p>
+		</div>
+		<div class="seat-wrap">
+			<div class="seatContainer">
+				<div class="seattitle">
+					<h2>电影选座</h2>
+				</div>
+				<div class="seats" id="seats">
+					<!--<div class="seat-cell" style=""></div>-->
+
+				</div>
+				<div class="seatinfo">
+
+					<ul>
+						<li>
+							<img src="img/emptyseat.png"> 可以选择
+						</li>
+						<li>
+							<img src="img/chooseseat.png"> 已选座位
+						</li>
+						<li>
+							<img src="img/cantseat.png"> 不可选座位
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation"  onclick="save()" id="OK">
+				<div class="container" style="background: #FF557F;">
+					<p class="navbar-brand" style="width: 100%;display: block;text-align: center;color: white; margin-bottom: -2px;">选座购票</p>
+				</div>
+			</nav>
+		</div>
+		<script>
+			function replaceChat(source, pos, newChar) {
+				if(pos < 0 || pos >= source.length || source.length == 0) {
+					return "invalid parameters...";
+				}
+				var iBeginPos = 0,
+					iEndPos = source.length;
+				var sFrontPart = source.substr(iBeginPos, pos);
+				var sTailPart = source.substr(pos + 1);
+				var sRet = sFrontPart + newChar + sTailPart;
+
+				return sRet;
+			}
+			var status = "";
+			for(var i = 0; i < 120; i++) status += Math.floor(Math.random() * 2);
+			console.log(status.substr(21));
+
+			function ReplaceAll(str, sptr, sptr1) {
+				while(str.indexOf(sptr) >= 0) {
+					str = str.replace(sptr, sptr1);
+				}
+				return str;
+			}
+
+			function save() {
+				status = ReplaceAll(status, '2', '1');
+				initialization();
+			}
+			var seath = 33;
+			var seatw = 46;
+			initialization();
+
+			function removeall(node) {
+				while(node.hasChildNodes())
+					node.removeChild(node.firstChild);
+			}
+
+			function initialization() {
+				var seats = document.getElementById("seats");
+				removeall(seats);
+				console.log(status);
+
+				for(var i = 0; i < 10; i++) {
+					var numnode = document.createElement("div");
+					numnode.classList.add("numnode");
+					numnode.innerText = (i + 1);
+					numnode.style.marginTop = (seath * i + 5) + "px";
+					numnode.style.marginLeft = (seatw * -1) + "px";
+					seats.appendChild(numnode);
+				}
+				for(var i = 0; i < 10; i++)
+					for(var j = 0; j < 12; j++) {
+						var nseat = document.createElement("div");
+						nseat.classList.add("seat-cell");
+
+						nseat.id = i * 10 + j;
+						switch(status[nseat.id]) {
+							case '0':
+								nseat.classList.add("empty-seat");
+								break;
+							case '1':
+								nseat.classList.add("cant-seat");
+								break;
+							case '2':
+								nseat.classList.add("choose-seat");
+								console.log("impossible");
+						}
+						nseat.style.marginTop = (seath * i) + "px";
+						nseat.style.marginLeft = (seatw * j) + "px";
+						nseat.addEventListener("click", changestyle);
+						seats.appendChild(nseat);
+					}
+			}
+
+			function changestyle() {
+				//console.log(this.id);
+				if(this.classList.contains("empty-seat")) {
+					this.classList.remove("empty-seat");
+					this.classList.add("choose-seat");
+					status = replaceChat(status, parseInt(this.id), '2');
+				} else
+				if(this.classList.contains("choose-seat")) {
+					this.classList.remove("choose-seat");
+					this.classList.add("empty-seat");
+					status = replaceChat(status, parseInt(this.id), '0');
+				}
+				//console.log(status);
+
+			}
+		</script>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>

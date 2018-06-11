@@ -1,0 +1,22 @@
+{
+	"index.html": {
+		"refer": [
+			"movie.html"
+		]
+	},
+	"movie.html": {
+		"refer": [
+			"sqsx.html"
+		]
+	},
+	"buy.html": {
+		"refer": [
+			"movie.html"
+		]
+	},
+	"sqsx.html": {
+		"refer": [
+			"buy.html"
+		]
+	}
+}
