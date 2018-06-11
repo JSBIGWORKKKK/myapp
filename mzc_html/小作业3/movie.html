@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			.profire {
+				margin: 2px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header row">
+						<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5" style="font-size: small;">杭州</a>
+						<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6" style="margin-left: -20px;">淘表表</a>
+						<a class="col-xs-3"></a>
+						<a class="glyphicon glyphicon-search col-xs-1 col-sm-1 col-md-1 col-lg-1" style="margin-top: 20px;" href="search_movie.html"></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+			<ul id="myTab" class="nav nav-tabs" style="margin-top: -25px;">
+				<li class="active">
+					<a href="#now" data-toggle="tab" style="float: right;">正在热映</a>
+				</li>
+				<li>
+					<a href="#after" data-toggle="tab">即将上映</a>
+				</li>
+			</ul>
+		</header>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade in active" id="now">
+				<div class="panel panel-default" style="margin-top: 2px;background: #E1E1E1;">
+					<div class="panel-body row">
+						<div class="col-xs-6">
+							<span class="glyphicon glyphicon-signal"></span>
+							<span>实时票房</span>
+						</div>
+						<div class="col-xs-6">
+							<span>今日大盘</span>
+							<span style="color: red;">11570.5万</span>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default" style="margin-top:-10px ;" onclick="window.location.href='sqsx.html'">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-3">
+								<img src="css/img/1.jpg" style="width:110%;" />
+							</div>
+							<div class="col-xs-6">
+								<p class="profire" style="font:'微软雅黑';font:;">神奇四侠</p>
+								<p class="profire">观众评分<span style="color: orange;font-weight: 800;">6.8</span></p>
+								<p class="profire">导演：吗支撑</p>
+								<p class="profire">主演：买早餐·没注册</p>
+							</div>
+							<div class="col-xs-3">
+								<a class="btn btn-default" href="choose.html" style="margin-top: 30px;background: orange; color: white;" role="button">购买</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="panel-footer" style="height: 40px;">
+						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">燃爆&nbsp;</span>生死肉搏就在眼前</p>
+					</div>
+				</div>
+
+				<div class="panel panel-default" style="margin-top:-10px ;" onclick="window.location.href='sqsx.html'">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-3">
+								<img src="css/img/2.jpg" style="width:110%;" />
+							</div>
+							<div class="col-xs-6">
+								<p class="profire" style="font:'微软雅黑';font:;">BGF</p>
+								<p class="profire">观众评分<span style="color: orange;font-weight: 800;">8.4</span></p>
+								<p class="profire">导演：吗支撑</p>
+								<p class="profire">主演：吗·这次</p>
+							</div>
+							<div class="col-xs-3">
+								<a class="btn btn-default" href="choose.html" style="margin-top: 30px;background: orange; color: white;" role="button">购买</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="panel-footer" style="height: 40px;">
+						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">燃爆&nbsp;</span>生死肉搏就在眼前</p>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="after">
+
+			</div>
+
+		</div>
+		<footer>
+
+		</footer>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
