@@ -3,6 +3,9 @@
 
 	<head>
 		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<title></title>
 		<style type="text/css">
 			* {
@@ -81,19 +84,7 @@
 				float: left;
 			}
 			
-			#OK {
-				display: block;
-				text-align: center;
-				margin-top: 20px;
-				cursor: pointer;
-				background: #eb002a;
-				border: 0;
-				width: 155px;
-				height: 42px;
-				line-height: 42px;
-				color: #fff;
-				font-size: 14px;
-			}
+		
 			
 			.numnode {
 				display: block;
@@ -110,6 +101,17 @@
 	</head>
 
 	<body>
+		<nav class="navbar navbar-fixed-top" style="background: #FF7F7F;">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header row">
+					<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="movie.html"></a>
+					<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6"></a>
+					<a class="col-xs-2"></a>
+					<a class="glyphicon glyphicon-share col-xs-2 col-sm-1 col-md-1 col-lg-1" style="margin-top: 20px;color: white;" href="#"></a>
+				</div>
+			</div>
+		</nav>
 		<div class="seat-wrap">
 			<div class="seatContainer">
 				<div class="seattitle">
@@ -135,10 +137,14 @@
 					</ul>
 				</div>
 			</div>
-			<button onclick="save()" id="OK">确认预定</button>
+			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" onclick="save()">
+				<div class="container" style="background: #FF557F;">
+					<p class="navbar-brand" style="width: 100%;display: block;text-align: center;color: white; margin-bottom: -2px;">选座购票</p>
+				</div>
+			</nav>
+			<!--			<button onclick="save()" id="OK">确认预定</button>-->
 		</div>
 		<script>
-			
 			function replaceChat(source, pos, newChar) {
 				if(pos < 0 || pos >= source.length || source.length == 0) {
 					return "invalid parameters...";
@@ -155,17 +161,19 @@
 			var seath = 33;
 			var seatw = 46;
 			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
-			for(var i = 1; i <= 120; i++) status += '0';console.log(status);
-			function getseats()
-			{
-				var req=new XMLHttpRequest();
-				req.open("GET","sql/?name=1",false);
-				req.send(null);
-				console.log(req.responseText);
-				status=req.responseText;
+			for(var i = 1; i <= 121; i++) status += '0';
+			console.log(status);
+
+			function getseats() {
+//				var req = new XMLHttpRequest();
+//				req.open("GET", "sql/?name=1", false);
+//				req.send(null);
+//				console.log(req.responseText);
+//				status = req.responseText;
 				initialization();
 			}
 			getseats();
+
 			function ReplaceAll(str, sptr, sptr1) {
 				while(str.indexOf(sptr) >= 0) {
 					str = str.replace(sptr, sptr1);
@@ -175,14 +183,14 @@
 
 			function save() {
 				status = ReplaceAll(status, '2', '1');
-				var req=new XMLHttpRequest();
-				req.open("GET","sql/?name=1&val="+status,false);
+				var req = new XMLHttpRequest();
+				req.open("GET", "sql/?name=1&val=" + status, false);
 				req.send(null);
 				console.log(req.responseText);
 				//status=req.responseText;
 				initialization();
 			}
-			
+
 			function removeall(node) {
 				while(node.hasChildNodes())
 					node.removeChild(node.firstChild);
@@ -205,7 +213,7 @@
 						var nseat = document.createElement("div");
 						nseat.classList.add("seat-cell");
 
-						nseat.id = i * 12 + j+1;
+						nseat.id = i * 12 + j + 1;
 						switch(status[nseat.id]) {
 							case '0':
 								nseat.classList.add("empty-seat");
@@ -239,8 +247,11 @@
 				//console.log(status);
 
 			}
-			
 		</script>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 
 </html>
