@@ -19,48 +19,50 @@
 			}
 			
 			.seatContainer {
-				width: 550px;
-				min-height: 500px;
+				width: 100%;
 			}
 			
 			.seat-wrap {
-				width: 700px;
-				height: 700px;
+				width: 100%;
 				/*background: pink;*/
 			}
 			
 			.seattitle {
 				margin: 15px auto;
-				width: 100px;
+				width: 200px;
 			}
 			
 			.seats {
-				width: 550px;
+				/*width: 550px;*/
 				height: 350px;
 			}
 			
 			.seat-cell {
 				margin: 0 auto;
-				width: 46px;
+				width: 10%;
 				height: 33px;
 				position: absolute;
 				/*background: white;*/
 			}
 			
 			.empty-seat {
-				background-image: url(img/emptyseat.png);
+				background: url(img/emptyseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.cant-seat {
-				background-image: url(img/cantseat.png);
+
+				background: url(img/cantseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.choose-seat {
-				background-image: url(img/chooseseat.png);
+				background: url(img/chooseseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.seatinfo {
-				width: 100%;
+			/*	width: 100%;*/
 				height: 25px;
 			}
 			
@@ -75,7 +77,7 @@
 				display: inline;
 				line-height: 25px;
 				height: 25px;
-				font-size: 22px;
+				font-size: 14px;
 				/*margin-right: 10px;*/
 			}
 			
@@ -84,6 +86,7 @@
 				float: left;
 			}
 			
+		
 			
 			.numnode {
 				display: block;
@@ -96,7 +99,6 @@
 				background-color: gray;
 			}
 		</style>
-		<script src="lib/jquery/jquery-1.11.0.min.js"></script>
 	</head>
 
 	<body>
@@ -111,20 +113,16 @@
 				</div>
 			</div>
 		</nav>
-		<div style="height: 100px; margin-top: 100px;" class="container">
-			<p>厕所英雄</p>
-			<p style="font-size: small; color: #B4B4B4;">今天06-11 10：10 （原版2D）</p>
-		</div>
 		<div class="seat-wrap">
 			<div class="seatContainer">
 				<div class="seattitle">
 					<h2>电影选座</h2>
 				</div>
-				<div class="seats" id="seats">
+				<div class="seats col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="seats">
 					<!--<div class="seat-cell" style=""></div>-->
 
 				</div>
-				<div class="seatinfo">
+				<div class="seatinfo col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 
 					<ul>
 						<li>
@@ -140,11 +138,12 @@
 					</ul>
 				</div>
 			</div>
-			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation"  onclick="save()" id="OK">
+			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" onclick="save()">
 				<div class="container" style="background: #FF557F;">
 					<p class="navbar-brand" style="width: 100%;display: block;text-align: center;color: white; margin-bottom: -2px;">选座购票</p>
 				</div>
 			</nav>
+			<!--			<button onclick="save()" id="OK">确认预定</button>-->
 		</div>
 		<script>
 			function replaceChat(source, pos, newChar) {
@@ -160,8 +159,21 @@
 				return sRet;
 			}
 			var status = "";
-			for(var i = 0; i < 120; i++) status += Math.floor(Math.random() * 2);
-			console.log(status.substr(21));
+			var seath = 33; 
+			var seatw = (document.getElementsByClassName("seats")[0].offsetWidth)*0.1;
+			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
+			for(var i = 1; i <= 121; i++) status += '0';
+			console.log(status);
+
+			function getseats() {
+//				var req = new XMLHttpRequest();
+//				req.open("GET", "sql/?name=1", false);
+//				req.send(null);
+//				console.log(req.responseText);
+//				status = req.responseText;
+				initialization();
+			}
+			getseats();
 
 			function ReplaceAll(str, sptr, sptr1) {
 				while(str.indexOf(sptr) >= 0) {
@@ -172,11 +184,13 @@
 
 			function save() {
 				status = ReplaceAll(status, '2', '1');
+				var req = new XMLHttpRequest();
+				req.open("GET", "sql/?name=1&val=" + status, false);
+				req.send(null);
+				console.log(req.responseText);
+				//status=req.responseText;
 				initialization();
 			}
-			var seath = 33;
-			var seatw = 46;
-			initialization();
 
 			function removeall(node) {
 				while(node.hasChildNodes())
@@ -187,21 +201,20 @@
 				var seats = document.getElementById("seats");
 				removeall(seats);
 				console.log(status);
-
 				for(var i = 0; i < 10; i++) {
 					var numnode = document.createElement("div");
 					numnode.classList.add("numnode");
 					numnode.innerText = (i + 1);
-					numnode.style.marginTop = (seath * i + 5) + "px";
-					numnode.style.marginLeft = (seatw * -1) + "px";
+					numnode.style.marginTop = ((seath+2)* i + 5) + "px";
+					numnode.style.marginLeft = ((seatw+2) * -1) + "px";
 					seats.appendChild(numnode);
 				}
 				for(var i = 0; i < 10; i++)
-					for(var j = 0; j < 12; j++) {
+					for(var j = 0; j < 10; j++) {
 						var nseat = document.createElement("div");
 						nseat.classList.add("seat-cell");
 
-						nseat.id = i * 10 + j;
+						nseat.id = i * 10 + j + 1;
 						switch(status[nseat.id]) {
 							case '0':
 								nseat.classList.add("empty-seat");
@@ -213,8 +226,8 @@
 								nseat.classList.add("choose-seat");
 								console.log("impossible");
 						}
-						nseat.style.marginTop = (seath * i) + "px";
-						nseat.style.marginLeft = (seatw * j) + "px";
+						nseat.style.marginTop = (seath * i+2*i) + "px";
+						nseat.style.marginLeft = (seatw * j+2*j) + "px";
 						nseat.addEventListener("click", changestyle);
 						seats.appendChild(nseat);
 					}
