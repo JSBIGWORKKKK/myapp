@@ -19,48 +19,50 @@
 			}
 			
 			.seatContainer {
-				width: 550px;
-				min-height: 500px;
+				width: 100%;
 			}
 			
 			.seat-wrap {
-				width: 700px;
-				height: 700px;
+				width: 100%;
 				/*background: pink;*/
 			}
 			
 			.seattitle {
 				margin: 15px auto;
-				width: 100px;
+				width: 200px;
 			}
 			
 			.seats {
-				width: 550px;
+				/*width: 550px;*/
 				height: 350px;
 			}
 			
 			.seat-cell {
 				margin: 0 auto;
-				width: 46px;
+				width: 10%;
 				height: 33px;
 				position: absolute;
 				/*background: white;*/
 			}
 			
 			.empty-seat {
-				background-image: url(img/emptyseat.png);
+				background: url(img/emptyseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.cant-seat {
-				background-image: url(img/cantseat.png);
+
+				background: url(img/cantseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.choose-seat {
-				background-image: url(img/chooseseat.png);
+				background: url(img/chooseseat.png) no-repeat center center;
+				/*background-size: 100% 100%;*/
 			}
 			
 			.seatinfo {
-				width: 100%;
+			/*	width: 100%;*/
 				height: 25px;
 			}
 			
@@ -75,7 +77,7 @@
 				display: inline;
 				line-height: 25px;
 				height: 25px;
-				font-size: 22px;
+				font-size: 14px;
 				/*margin-right: 10px;*/
 			}
 			
@@ -97,31 +99,32 @@
 				background-color: gray;
 			}
 		</style>
-		<script src="lib/jquery/jquery-1.11.0.min.js"></script>
 	</head>
 
 	<body>
+				<!-- 导航栏-->
 		<nav class="navbar navbar-fixed-top" style="background: #FF7F7F;">
-			<div class="container-fluid">
+			<div class="container-fluid" >
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header row">
+				<div class="navbar-header" style="width: 100%;">
 					<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="movie.html"></a>
 					<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6"></a>
-					<a class="col-xs-2"></a>
-					<a class="glyphicon glyphicon-share col-xs-2 col-sm-1 col-md-1 col-lg-1" style="margin-top: 20px;color: white;" href="#"></a>
+					<a class="navbar-brand glyphicon glyphicon-share col-xs-2 col-xs-offset-2 col-sm-1 col-md-1 col-lg-1" style="color: white;" href="#"></a>
 				</div>
 			</div>
+
 		</nav>
-		<div class="seat-wrap">
+		<!-- 导航栏-->
+		<div class="seat-wrap" style="margin-top: 60px;">
 			<div class="seatContainer">
 				<div class="seattitle">
 					<h2>电影选座</h2>
 				</div>
-				<div class="seats" id="seats">
+				<div class="seats col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" id="seats">
 					<!--<div class="seat-cell" style=""></div>-->
 
 				</div>
-				<div class="seatinfo">
+				<div class="seatinfo col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 
 					<ul>
 						<li>
@@ -145,6 +148,7 @@
 			<!--			<button onclick="save()" id="OK">确认预定</button>-->
 		</div>
 		<script>
+			console.log(window.location.search);
 			function replaceChat(source, pos, newChar) {
 				if(pos < 0 || pos >= source.length || source.length == 0) {
 					return "invalid parameters...";
@@ -158,18 +162,21 @@
 				return sRet;
 			}
 			var status = "";
-			var seath = 33;
-			var seatw = 46;
+			var seath = 33; 
+			var seatw = (document.getElementsByClassName("seats")[0].offsetWidth)*0.1;
 			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
 			for(var i = 1; i <= 121; i++) status += '0';
 			console.log(status);
-
+			var url=window.location.search;
+			url=url.slice(1);
+			console.log(url);
 			function getseats() {
-//				var req = new XMLHttpRequest();
-//				req.open("GET", "sql/?name=1", false);
-//				req.send(null);
-//				console.log(req.responseText);
-//				status = req.responseText;
+				
+				var req = new XMLHttpRequest();
+				req.open("GET", "sql/?name="+url, false);
+				req.send(null);
+				console.log(req.responseText);
+				status = req.responseText;
 				initialization();
 			}
 			getseats();
@@ -180,12 +187,40 @@
 				}
 				return str;
 			}
+			function postDataFormat(obj){
+			if(typeof obj != "object" ) {
+				alert("输入的参数必须是对象");
+				return;
+			}
 
+			// 支持有FormData的浏览器（Firefox 4+ , Safari 5+, Chrome和Android 3+版的Webkit）
+			if(typeof FormData == "function") {
+				var data = new FormData();
+				for(var attr in obj) {
+					data.append(attr,obj[attr]);
+				}
+				return data;
+			}else {
+				// 不支持FormData的浏览器的处理 
+				var arr = new Array();
+				var i = 0;
+				for(var attr in obj) {
+					arr[i] = encodeURIComponent(attr) + "=" + encodeURIComponent(obj[attr]);
+					i++;
+				}
+				return arr.join("&");
+			}
+			}
 			function save() {
 				status = ReplaceAll(status, '2', '1');
 				var req = new XMLHttpRequest();
-				req.open("GET", "sql/?name=1&val=" + status, false);
-				req.send(null);
+				var data = {name : url , val: status};
+				req.open("put", "sql", true);
+   				req.setRequestHeader("Content-Type", "application/json");
+				req.send(JSON.stringify(data));
+				   //req.send(postDataFormat(data));
+				//req.open("GET", "sql/?name="+url+"&val=" + status, false);
+				//req.send(null);
 				console.log(req.responseText);
 				//status=req.responseText;
 				initialization();
@@ -204,16 +239,16 @@
 					var numnode = document.createElement("div");
 					numnode.classList.add("numnode");
 					numnode.innerText = (i + 1);
-					numnode.style.marginTop = (seath * i + 5) + "px";
-					numnode.style.marginLeft = (seatw * -1) + "px";
+					numnode.style.marginTop = ((seath+2)* i + 5) + "px";
+					numnode.style.marginLeft = ((seatw+2) * -1) + "px";
 					seats.appendChild(numnode);
 				}
 				for(var i = 0; i < 10; i++)
-					for(var j = 0; j < 12; j++) {
+					for(var j = 0; j < 10; j++) {
 						var nseat = document.createElement("div");
 						nseat.classList.add("seat-cell");
 
-						nseat.id = i * 12 + j + 1;
+						nseat.id = i * 10 + j + 1;
 						switch(status[nseat.id]) {
 							case '0':
 								nseat.classList.add("empty-seat");
@@ -225,8 +260,8 @@
 								nseat.classList.add("choose-seat");
 								console.log("impossible");
 						}
-						nseat.style.marginTop = (seath * i) + "px";
-						nseat.style.marginLeft = (seatw * j) + "px";
+						nseat.style.marginTop = (seath * i+2*i) + "px";
+						nseat.style.marginLeft = (seatw * j+2*j) + "px";
 						nseat.addEventListener("click", changestyle);
 						seats.appendChild(nseat);
 					}
