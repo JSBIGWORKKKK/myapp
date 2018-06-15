@@ -168,12 +168,17 @@
 			for(var i = 1; i <= 121; i++) status += '0';
 			console.log(status);
 
+			var url=window.location.search;
+			url=url.slice(1);
+			console.log(url);
 			function getseats() {
-//				var req = new XMLHttpRequest();
-//				req.open("GET", "sql/?name=1", false);
-//				req.send(null);
-//				console.log(req.responseText);
-//				status = req.responseText;
+				
+				var req = new XMLHttpRequest();
+				req.open("GET", "sql/?name="+url, false);
+				req.send(null);
+				console.log(req.responseText);
+				status = req.responseText;
+
 				initialization();
 			}
 			getseats();
@@ -185,11 +190,40 @@
 				return str;
 			}
 
+			function postDataFormat(obj){
+			if(typeof obj != "object" ) {
+				alert("输入的参数必须是对象");
+				return;
+			}
+
+			// 支持有FormData的浏览器（Firefox 4+ , Safari 5+, Chrome和Android 3+版的Webkit）
+			if(typeof FormData == "function") {
+				var data = new FormData();
+				for(var attr in obj) {
+					data.append(attr,obj[attr]);
+				}
+				return data;
+			}else {
+				// 不支持FormData的浏览器的处理 
+				var arr = new Array();
+				var i = 0;
+				for(var attr in obj) {
+					arr[i] = encodeURIComponent(attr) + "=" + encodeURIComponent(obj[attr]);
+					i++;
+				}
+				return arr.join("&");
+			}
+			}
 			function save() {
 				status = ReplaceAll(status, '2', '1');
 				var req = new XMLHttpRequest();
-				req.open("GET", "sql/?name=1&val=" + status, false);
-				req.send(null);
+				var data = {name : url , val: status};
+				req.open("put", "sql", true);
+   				req.setRequestHeader("Content-Type", "application/json");
+				req.send(JSON.stringify(data));
+				   //req.send(postDataFormat(data));
+				//req.open("GET", "sql/?name="+url+"&val=" + status, false);
+				//req.send(null);
 				console.log(req.responseText);
 				//status=req.responseText;
 				initialization();
