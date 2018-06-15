@@ -167,6 +167,7 @@
 			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
 			for(var i = 1; i <= 121; i++) status += '0';
 			console.log(status);
+
 			var url=window.location.search;
 			url=url.slice(1);
 			console.log(url);
@@ -177,6 +178,7 @@
 				req.send(null);
 				console.log(req.responseText);
 				status = req.responseText;
+
 				initialization();
 			}
 			getseats();
@@ -187,6 +189,7 @@
 				}
 				return str;
 			}
+
 			function postDataFormat(obj){
 			if(typeof obj != "object" ) {
 				alert("输入的参数必须是对象");

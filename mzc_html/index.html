@@ -11,24 +11,203 @@
 			body {
 				height: 100%;
 			}
+			
+			img {
+				width: 100%;
+			}
+			
+			.btn {
+				font-size: x-small;
+			}
+			
+			.m {
+				font-size: 120px;
+			}
+			
+			@media (max-width: 500px) {
+				.m {
+					font-size: medium;
+				}
+			}
+
 		</style>
 	</head>
 
 	<body>
-		<div class="jumbotron" style="height: 100%;">
-			<div class="row">
-				<h1 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">Hello,马之骋</h1>
-				<h1></h1>
-				<h1></h1>
-				<h1></h1>
-				<p class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">欢迎使用淘表表</p>
-				<h1></h1>
-				<h1></h1>
-				<h1></h1>
-				
-				<p  class="col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-lg-offset-9">
-					<a class="btn btn-primary btn-lg" href="movie.html" role="button">进入app</a>
-				</p>
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header" style="width: 100%;">
+					<a class="navbar-brand col-xs-5" style="font-size: small;">杭州</a>
+					<a class="navbar-brand col-xs-6">淘表表</a>
+					<div class="navbar-brand col-xs-1">
+						<a class="glyphicon glyphicon-share col-xs-1 col-xs-offset-11" style="color: #777;"></a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="myCarousel" class="carousel slide">
+			<!-- 轮播（Carousel）指标 -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+			</ol>
+			<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="img/carousel1.png" alt="First slide">
+				</div>
+				<div class="item">
+					<img src="img/carousel2.jpg" alt="Second slide">
+				</div>
+			</div>
+			<!-- 轮播（Carousel）导航 -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+		<div class="col-xs-12 col-md-12" style="margin-bottom: 20px;">
+			<div class="col-xs-6 col-md-6" style="margin-top: 18px;">正在热映</div>
+			<a class="btn btn-danger col-xs-3 col-md-1" href="movie.html" style="margin-top: 15px;" role="button">进入淘表表</a>
+		</div>
+		<div>
+
+			<!--
+            	作者：704759728@qq.com
+            	时间：2018-06-15
+            	描述：第一个模块
+            -->
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_csyx.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/csyx.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_zljsj.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/zljsj.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_dlam.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/dlam.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_shyy.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/shyy.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_fl3.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/fl3.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='movie_wmmsr.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/wmmsr.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-12" style="margin-bottom: 20px;">
+				<div class="col-xs-6 col-md-6" style="margin-top: 18px;">正在热映</div>
+			</div>
+			<!--
+            	作者：704759728@qq.com
+            	时间：2018-06-15
+            	描述：第二个模块
+            -->
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_mcgj.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/mcgj.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_xmz.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/xmz.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_x13.html'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/x13.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_cr2.htmll'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/cr2.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_mtydy.htmll'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/mtydy.jpg" />
+						</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default col-xs-4 col-md-2" style="margin-top:-10px ;" onclick="window.location.href='x_movie_dxxm.htmll'">
+				<div class="panel-body">
+					<div>
+						<p>
+							<img src="img/dxxm.jpg" />
+						</p>
+
+					</div>
+				</div>
 			</div>
 
 		</div>
