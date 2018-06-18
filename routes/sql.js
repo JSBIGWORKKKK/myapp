@@ -11,7 +11,8 @@ router.get(/\w*/, function(req, res, next) {
 	});
 
 	connection.connect();
-	console.log(req.query.val);
+	if (req.query.name)
+	{
 	//var qq=["a","b"].join('');
 	var qq = "SELECT `seats` FROM movie.data where performance='" + req.query.name+"'";
 	console.log(qq);
@@ -23,6 +24,21 @@ router.get(/\w*/, function(req, res, next) {
 		res.send(ans);
 
 	});
+	}
+	else
+	{
+		var qq = "SELECT val from movie.moviename where name like'%"+req.query.moviename+"%'";
+		console.log(qq);
+		var ans="";
+		connection.query(qq, function(err, rows, fields) {
+		if(err) throw err;
+		for (var row of rows)
+		ans+=row.val+',';
+		ans=ans.substr(0,ans.length-1)
+		console.log('The solution is: ', ans);
+		res.send(ans);
+	});
+	}
 	connection.end();
 
 });
