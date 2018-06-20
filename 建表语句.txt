@@ -2,7 +2,7 @@ CREATE TABLE `data` (
   `performance` varchar(255) NOT NULL,
   `seats` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`performance`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 
