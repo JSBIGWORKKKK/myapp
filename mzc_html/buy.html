@@ -15,7 +15,7 @@
 			
 			html,
 			body {
-				height: 100%
+				height: 80%
 			}
 			
 			.seatContainer {
@@ -47,22 +47,18 @@
 			
 			.empty-seat {
 				background: url(img/emptyseat.png) no-repeat center center;
-				/*background-size: 100% 100%;*/
 			}
 			
 			.cant-seat {
-
 				background: url(img/cantseat.png) no-repeat center center;
-				/*background-size: 100% 100%;*/
 			}
 			
 			.choose-seat {
 				background: url(img/chooseseat.png) no-repeat center center;
-				/*background-size: 100% 100%;*/
 			}
 			
 			.seatinfo {
-			/*	width: 100%;*/
+				/*	width: 100%;*/
 				height: 25px;
 			}
 			
@@ -86,7 +82,10 @@
 				float: left;
 			}
 			
-		
+			h2 {
+				margin: 0 auto;
+				text-align: center;
+			}
 			
 			.numnode {
 				display: block;
@@ -98,22 +97,67 @@
 				border-radius: 33px;
 				background-color: gray;
 			}
+			
+			.navbar-header a {
+				line-height: 30px;
+				font-size: 20px;
+				color: black;
+			}
+			
+			.clear-btn {
+				position: absolute;
+				height: 45px;
+			}
 		</style>
 	</head>
 
 	<body>
-				<!-- 导航栏-->
+		<!-- 导航栏-->
 		<nav class="navbar navbar-fixed-top" style="background: #FF7F7F;">
-			<div class="container-fluid" >
+			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header" style="width: 100%;">
-					<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="movie.html"></a>
-					<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6"></a>
-					<a class="navbar-brand glyphicon glyphicon-share col-xs-2 col-xs-offset-2 col-sm-1 col-md-1 col-lg-1" style="color: white;" href="#"></a>
+					<a id="back" class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="javascript:;" onclick="javascript:history.back();"></a>
+					<!--<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6 data-toggle="modal" data-target="#myModal">清空选座</a>-->
+					<button class="btn btn-primary clear-btn" data-toggle="modal" data-target="#myModal">清空座位</button>
+					<a class="glyphicon glyphicon-share col-xs-2 col-xs-offset-5 col-sm-1 col-sm-offset-5 col-md-1 col-md-offset-5 col-lg-1 col-lg-offset-5" style="color: white;" href="#"></a>
 				</div>
 			</div>
 
 		</nav>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">清空座位需要管理员权限</h4>
+					</div>
+					<div class="modal-body">
+						<div class="input-group">
+							<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+							<input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+						</div>
+						<br>
+						<!--下面是密码输入框-->
+						<div class="input-group">
+							<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+							<input id="passWord" type="text" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+
+						</div>
+						<br>
+						<!--下面是登陆按钮,包括颜色控制-->
+					
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button id="clear"type="button" class="btn btn-primary">提交更改</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
 		<!-- 导航栏-->
 		<div class="seat-wrap" style="margin-top: 60px;">
 			<div class="seatContainer">
@@ -148,7 +192,54 @@
 			<!--			<button onclick="save()" id="OK">确认预定</button>-->
 		</div>
 		<script>
+			var status = "";
+			var seath = 33;
+			var choosenumber = 0;
+			var seatw = (document.getElementsByClassName("seats")[0].offsetWidth) * 0.097;
+			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
+			for(var i = 1; i <= 121; i++) status += '0';
+			console.log(status);
+
+			var url = window.location.search;
+			url = url.slice(1);
+			var po=url.indexOf('-');
+			console.log(url);
+			console.log(url.slice(0,po));
+			var back=document.getElementById("back");
+			//back.href="movie_"+url.slice(0,po)+".html";
+			localStorage.setItem("root","123456");
 			console.log(window.location.search);
+			var clear = document.querySelector("#clear");
+			clear.addEventListener("click", function() {
+				var userName=document.querySelector("#userName").value;
+					var passWord=document.querySelector("#passWord").value;
+					if (localStorage.getItem(userName))
+					{
+						//console.log(localStorage.getItem(userName));
+						if (localStorage.getItem(userName)!=passWord)
+						alert("密码错误");
+						else  
+						{
+							$("#myModal").modal('hide');
+							status = ReplaceAll(status, '2', '0');
+							status = ReplaceAll(status, '1', '0');
+							console.log(status);
+							var req = new XMLHttpRequest();
+							var data = {
+								name: url,
+								val: status
+							};
+							req.open("put", "sql", true);
+							req.setRequestHeader("Content-Type", "application/json");
+							req.send(JSON.stringify(data));
+							alert("修改成功");
+							initialization();
+						}
+					}
+					else
+					alert("用户不存在");
+			});
+			
 			function replaceChat(source, pos, newChar) {
 				if(pos < 0 || pos >= source.length || source.length == 0) {
 					return "invalid parameters...";
@@ -161,20 +252,11 @@
 
 				return sRet;
 			}
-			var status = "";
-			var seath = 33; 
-			var seatw = (document.getElementsByClassName("seats")[0].offsetWidth)*0.1;
-			//for(var i = 1; i <= 120; i++) status += Math.floor(Math.random() * 2);
-			for(var i = 1; i <= 121; i++) status += '0';
-			console.log(status);
-
-			var url=window.location.search;
-			url=url.slice(1);
-			console.log(url);
+		
 			function getseats() {
-				
+
 				var req = new XMLHttpRequest();
-				req.open("GET", "sql/?name="+url, false);
+				req.open("GET", "sql/?name=" + url, false);
 				req.send(null);
 				console.log(req.responseText);
 				status = req.responseText;
@@ -190,41 +272,25 @@
 				return str;
 			}
 
-			function postDataFormat(obj){
-			if(typeof obj != "object" ) {
-				alert("输入的参数必须是对象");
-				return;
-			}
-
-			// 支持有FormData的浏览器（Firefox 4+ , Safari 5+, Chrome和Android 3+版的Webkit）
-			if(typeof FormData == "function") {
-				var data = new FormData();
-				for(var attr in obj) {
-					data.append(attr,obj[attr]);
-				}
-				return data;
-			}else {
-				// 不支持FormData的浏览器的处理 
-				var arr = new Array();
-				var i = 0;
-				for(var attr in obj) {
-					arr[i] = encodeURIComponent(attr) + "=" + encodeURIComponent(obj[attr]);
-					i++;
-				}
-				return arr.join("&");
-			}
-			}
 			function save() {
+				if(choosenumber == 0) {
+					alert("请至少选择一个座位");
+					return;
+				}
 				status = ReplaceAll(status, '2', '1');
 				var req = new XMLHttpRequest();
-				var data = {name : url , val: status};
+				var data = {
+					name: url,
+					val: status
+				};
 				req.open("put", "sql", true);
-   				req.setRequestHeader("Content-Type", "application/json");
+				req.setRequestHeader("Content-Type", "application/json");
 				req.send(JSON.stringify(data));
-				   //req.send(postDataFormat(data));
+				//req.send(postDataFormat(data));
 				//req.open("GET", "sql/?name="+url+"&val=" + status, false);
 				//req.send(null);
 				console.log(req.responseText);
+				alert("订座成功！");
 				//status=req.responseText;
 				initialization();
 			}
@@ -235,6 +301,7 @@
 			}
 
 			function initialization() {
+				choosenumber = 0;
 				var seats = document.getElementById("seats");
 				removeall(seats);
 				console.log(status);
@@ -242,8 +309,8 @@
 					var numnode = document.createElement("div");
 					numnode.classList.add("numnode");
 					numnode.innerText = (i + 1);
-					numnode.style.marginTop = ((seath+2)* i + 5) + "px";
-					numnode.style.marginLeft = ((seatw+2) * -1) + "px";
+					numnode.style.marginTop = ((seath + 2) * i + 5) + "px";
+					numnode.style.marginLeft = ((seatw + 2) * -1) + "px";
 					seats.appendChild(numnode);
 				}
 				for(var i = 0; i < 10; i++)
@@ -263,8 +330,8 @@
 								nseat.classList.add("choose-seat");
 								console.log("impossible");
 						}
-						nseat.style.marginTop = (seath * i+2*i) + "px";
-						nseat.style.marginLeft = (seatw * j+2*j) + "px";
+						nseat.style.marginTop = (seath * i + 2 * i) + "px";
+						nseat.style.marginLeft = (seatw * j + 2 * j) + "px";
 						nseat.addEventListener("click", changestyle);
 						seats.appendChild(nseat);
 					}
@@ -276,11 +343,13 @@
 					this.classList.remove("empty-seat");
 					this.classList.add("choose-seat");
 					status = replaceChat(status, parseInt(this.id), '2');
+					choosenumber++;
 				} else
 				if(this.classList.contains("choose-seat")) {
 					this.classList.remove("choose-seat");
 					this.classList.add("empty-seat");
 					status = replaceChat(status, parseInt(this.id), '0');
+					choosenumber--;
 				}
 				//console.log(status);
 
