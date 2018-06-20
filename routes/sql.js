@@ -2,6 +2,35 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
+router.get("/detail", function(req, res, next) {
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host: 'localhost',
+		user: 'root',
+		password: '123456'
+	});
+	connection.connect();
+	var qq = "SELECT * FROM movie.movie_detail";
+	console.log(qq);
+	var ans=[];
+	connection.query(qq, function(err, rows, fields) {
+		if(err) throw err;
+		for (var row of rows)
+		{
+			var now={};
+			now.id=row.id;
+			now.name=row.name;
+			now.score=row.score;
+			now.director=row.director;
+			now.actor=row.actor;
+			now.comment=row.comment;
+			ans.push(now);
+		}
+		console.log(ans);
+		return res.json(ans);
+		
+	});
+});
 router.get(/\w*/, function(req, res, next) {
 	var mysql = require('mysql');
 	var connection = mysql.createConnection({
