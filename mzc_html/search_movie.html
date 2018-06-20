@@ -61,11 +61,11 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<div class="navbar-brand col-xs-1">
+					<div class="navbar-brand col-xs-2">
 						<a class="glyphicon glyphicon-menu-left" href="movie.html"></a>
 					</div>
 					<div class="navbar-brand col-xs-8" style="margin-top: -5px;">
-						<input id="search" type="text" class="form-control" placeholder="Search">
+						<input id="search" type="text" class="form-control" placeholder="全部电影">
 					</div>
 
 					<!--<a class="col-xs-3  col-sm-0 col-md-0 col-lg-0"></a>-->
@@ -258,27 +258,22 @@
 		<script>
 			submit = document.getElementById("submit");
 			submit.addEventListener("click", function() {
-				//				var search = document.getElementById("search");
-				//				var req = new XMLHttpRequest();
-				//				req.open("GET", "sql/?moviename=" + search.value, false);
-				//				req.send(null);
-				//				console.log(req.response);
-				//				var moviearr = req.response.split(",");
-				//				console.log(moviearr);
-				//				for(var moviename of moviearr) {
-				//					console.log(moviename);
-				//					var ndiv = document.getElementById(moviename);
-				//					ndiv.style.visibility="visible";
-				//				}
 				var arr =document.getElementsByClassName("panel");
 				for(var movie of arr){
 					movie.style.display="none";
 				}
-				var moviename=document.getElementById("search").value;
-				console.log(moviename)
-				var ndiv = document.getElementById(moviename);
-				ndiv.style.display="block";
-
+				var search = document.getElementById("search");
+				var req = new XMLHttpRequest();
+				req.open("GET", "sql/?moviename=" + search.value, false);
+				req.send(null);
+				console.log(req.response);
+				var moviearr = req.response.split(",");
+				console.log(moviearr);
+				for(var moviename of moviearr) {
+					console.log(moviename);
+					var ndiv = document.getElementById(moviename);
+					ndiv.style.display="block";
+				}
 			});
 		</script>
 		<script src="jquery/jquery-1.11.0.min.js"></script>
