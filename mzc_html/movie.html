@@ -77,6 +77,9 @@
 				<li>
 					<a href="#after" data-toggle="tab">即将上映</a>
 				</li>
+				<li>
+					<a href="#mylike" data-toggle="tab">我的收藏</a>
+				</li>
 			</ul>
 		</header>
 		<div id="myTabContent" class="tab-content">
@@ -431,7 +434,10 @@
 					</div>-->
 				</div>
 			</div>
-
+			<div class="tab-pane fade" id="mylike">
+				
+				<div style="width: 100%; height:10px;"></div>
+			</div>
 		</div>
 		<footer>
 
@@ -441,41 +447,82 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script>
-			var req = new XMLHttpRequest();
-			req.open("get", "sql/detail", true);
-			req.onload=function(e){
-				var detail=JSON.parse(req.response);
-				console.log(JSON.parse(req.response));
-				var panel=document.getElementsByClassName("movie-card")[0];
-				//console.log(panel);
-				for (var d of detail)
-				{
-					var now=panel.cloneNode(true);
-					var name=d.name;
-					console.log(d.name);
-					let id=d.id;
-					var score="评分"+d.score;
-					var director="导演："+d.director;
-					var actor="演员："+d.actor;
-					var comment="影评："+d.comment;
-					now.getElementsByClassName("moviename")[0].textContent=name;
-					now.getElementsByClassName("moviescore")[0].textContent=score;
-					now.getElementsByClassName("moviedirector")[0].textContent=director;
-					now.getElementsByClassName("movieactor")[0].textContent=actor;
-					now.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
-					now.getElementsByClassName("moviecomment")[0].textContent=comment;
-					now.onclick=function(){
-						console.log("movie_"+id+".html");
-						window.location.href="movie_"+id+".html";
+			//刷新当前电影
+			{
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/detail", true);
+				req.onload=function(e){
+					var detail=JSON.parse(req.response);
+					console.log(JSON.parse(req.response));
+					var panel=document.getElementsByClassName("movie-card")[0];
+					//console.log(panel);
+					for (var d of detail)
+					{
+						var now=panel.cloneNode(true);
+						var name=d.name;
+						console.log(d.name);
+						let id=d.id;
+						var score="评分"+d.score;
+						var director="导演："+d.director;
+						var actor="演员："+d.actor;
+						var comment="影评："+d.comment;
+						now.getElementsByClassName("moviename")[0].textContent=name;
+						now.getElementsByClassName("moviescore")[0].textContent=score;
+						now.getElementsByClassName("moviedirector")[0].textContent=director;
+						now.getElementsByClassName("movieactor")[0].textContent=actor;
+						now.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
+						now.getElementsByClassName("moviecomment")[0].textContent=comment;
+						now.onclick=function(){
+							//window.location.href="movie_"+id+".html";
+							window.location.href="movie_detail.html?"+id;
+						}
+						//console.log(now.onclick);
+						var bd=document.getElementById("now");
+						now.style.display="block";
+						bd.appendChild(now);
 					}
-					//console.log(now.onclick);
-					var bd=document.getElementById("now");
-					now.style.display="block";
-					bd.appendChild(now);
 				}
-			}
 				req.setRequestHeader("Content-Type", "application/json");
 				req.send("");
+			}
+			//刷新mylike
+			{
+				let req = new XMLHttpRequest();
+				req.open("get", "sql/mylike?account=" + localStorage.getItem("account"), true);
+				req.onload = function(e) {
+						var detail = JSON.parse(req.response);
+						console.log(JSON.parse(req.response));
+						var panel=document.getElementsByClassName("movie-card")[0];
+						//console.log(detail);
+						for (var d of detail)
+						{
+							var now=panel.cloneNode(true);
+							var name=d.name;
+							console.log(d.name);
+							let id=d.id;
+							var score="评分"+d.score;
+							var director="导演："+d.director;
+							var actor="演员："+d.actor;
+							var comment="影评："+d.comment;
+							now.getElementsByClassName("moviename")[0].textContent=name;
+							now.getElementsByClassName("moviescore")[0].textContent=score;
+							now.getElementsByClassName("moviedirector")[0].textContent=director;
+							now.getElementsByClassName("movieactor")[0].textContent=actor;
+							now.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
+							now.getElementsByClassName("moviecomment")[0].textContent=comment;
+							now.onclick=function(){
+								//window.location.href="movie_"+id+".html";
+								window.location.href="movie_detail.html?"+id;
+							}
+							//console.log(now.onclick);
+							var bd=document.getElementById("mylike");
+							now.style.display="block";
+							bd.appendChild(now);
+						}
+					}
+					req.setRequestHeader("Content-Type", "application/json");
+					req.send("");
+			}
 		</script>
 		
 	</body>
