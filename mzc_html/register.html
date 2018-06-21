@@ -1,0 +1,53 @@
+<head>
+	<link rel="stylesheet" href="css2/bootstrap.min.css">
+	<style>
+		body {
+			margin-left: auto;
+			margin-right: auto;
+			margin-TOP: 100PX;
+			width: 20em;
+		}
+		
+		.input-group {
+			width: 350 px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="input-group">
+		<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+		<input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+	</div>
+	<br>
+	<!--下面是密码输入框-->
+	<div class="input-group">
+		<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+		<input id="passWord" type="text" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+
+	</div>
+	<br>
+	<!--下面是登陆按钮,包括颜色控制-->
+	<div style="width:100%">
+		<button id="register" type="button" style="width:100%;float:left" class="btn btn-default">注 册</button>
+	</div>
+	<script>
+		var reg = document.querySelector("#register");
+		//var dic=JSON.parse(localStorage.getItem("accounts"));
+		//console.log(dic);
+		reg.addEventListener("click", function() {
+			var userName = document.querySelector("#userName").value;
+			var passWord = document.querySelector("#password").value;
+			if(localStorage.getItem(userName))
+				alert("用户已存在！");
+			else
+			if(userName.length > 20)
+				alert("用户名长度不能大于20！");
+			else {
+				localStorage.setItem(userName, passWord);
+				alert("注册成功！");
+				self.location = "login.html";
+			}
+		});
+	</script>
+</body>
