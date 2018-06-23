@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			tr th {
+				text-align: center;
+			}
+			
+			tr td {
+				text-align: center;
+			}
+			
+			th {
+				font-size: medium;
+				font-weight: normal;
+			}
+			.tt{
+					text-align: center;
+					font-size: x-large;
+				}
+			@media (max-width: 500px) {
+				th {
+					font-size: x-small;
+					font-weight: normal;
+				}
+				.tt{
+					font-size: large;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header" style="width: 100%;">
+					<a class="navbar-brand col-xs-5 glyphicon glyphicon-menu-left" style="font-size: small;" style="color: white;" href="index.html"></a>
+					<a class="navbar-brand col-xs-5" href="index.html">淘表表</a>
+					<div class="navbar-brand col-xs-1">
+						<a class="glyphicon glyphicon-search col-xs-1 col-xs-offset-11" style="color: #777;" href="search_movie.html"></a>
+					</div>
+				</div>
+			</div>
+			<img src="img/carousel1.png" alt="First slide" style="width: 100%;">
+		</nav>
+		<div class="col-md-offset-1 col-md-10 tt">电影排片表</div>
+		<div class="col-md-offset-1 col-md-10">
+			<table class="table table-striped">
+				
+				<thead>
+					<tr>
+						<th style="width: 16%;" class="schedule-date">放映日期</th>
+						<th style="width: 17%;" class="schedule-time">放映时间</th>
+						<th style="width: 17%;" class="movie-name">影片名称</th>
+						<th style="width: 17%;" class="cinema-name">影院名称</th>
+						<th style="width: 17%;" class="cinema-address">影院地址</th>
+						<th style="width: 16%;" class="price">价格</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">08:30-09:58</th>
+						<th class="movie-name">冷战 (4K)</th>
+						<th class="cinema-name">上海大光明电影院</th>
+						<th class="cinema-address">南京西路216号</th>
+						<th class="price">80元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">08:30-10:12</th>
+						<th class="movie-name">资产阶级的审慎魅力</th>
+						<th class="cinema-name">SFC上海影城</th>
+						<th class="cinema-address">新华路160号</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">08:30-09:56</th>
+						<th class="movie-name">你从未在此</th>
+						<th class="cinema-name">SFC上海影城</th>
+						<th class="cinema-address">新华路160号</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">08:30-10:04</th>
+						<th class="movie-name">菲茨罗伊</th>
+						<th class="cinema-name">SFC上海影城</th>
+						<th class="cinema-address">新华路160号</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-12:42</th>
+						<th class="movie-name">阿凡达 (3D/AT 10FL)</th>
+						<th class="cinema-name">百丽宫影城（长宁来福士店）</th>
+						<th class="cinema-address">长宁路1123号七层701-703</th>
+						<th class="price">120元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-12:49</th>
+						<th class="movie-name">花筐</th>
+						<th class="cinema-name">上海UA梅龙镇广场电影城</th>
+						<th class="cinema-address">南京西路1038号梅龙镇广场10楼</th>
+						<th class="price">100元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-12:23</th>
+						<th class="movie-name">复仇者联盟 (3D)</th>
+						<th class="cinema-name">上海兰生典尚影院</th>
+						<th class="cinema-address">淮海中路2-8号</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-13:15</th>
+						<th class="movie-name">泰坦尼克号 (3D/Dolby Vision)</th>
+						<th class="cinema-name">红星电影世界上海吴中路旗舰店</th>
+						<th class="cinema-address">吴中路1588号爱琴海购物公园7楼</th>
+						<th class="price">150元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-12:42</th>
+						<th class="movie-name">阿凡达 (3D/AT 10FL)</th>
+						<th class="cinema-name">红星电影世界上海吴中路旗舰店</th>
+						<th class="cinema-address">吴中路1588号爱琴海购物公园7楼</th>
+						<th class="price">120元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:00-12:42</th>
+						<th class="movie-name">阿凡达 (4K/3D/IMAX)</th>
+						<th class="cinema-name">上海和平影都</th>
+						<th class="cinema-address">西藏中路290号</th>
+						<th class="price">150元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:30-12:00</th>
+						<th class="movie-name">秋日奏鸣曲</th>
+						<th class="cinema-name">SFC上影影城（新衡山店）</th>
+						<th class="cinema-address">衡山路838号</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:30-12:20</th>
+						<th class="movie-name">爱你，西蒙</th>
+						<th class="cinema-name">上海UME新天地国际影城</th>
+						<th class="cinema-address">兴业路123弄新天地广场6号楼5楼</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:30-11:56</th>
+						<th class="movie-name">南茜</th>
+						<th class="cinema-name">百美汇影城（静安嘉里中心店）</th>
+						<th class="cinema-address">南京西路1551号嘉里中心N4-01</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:30-12:43</th>
+						<th class="movie-name">神奇动物在哪里 (3D)</th>
+						<th class="cinema-name">上海百老汇影城（宝龙店）</th>
+						<th class="cinema-address">漕宝路3299弄15号宝龙城L4</th>
+						<th class="price">60元</th>
+					</tr>
+					<tr class=" expired">
+						<th class="schedule-date">06-16 周六</th>
+						<th class="schedule-time">10:30-13:07</th>
+						<th class="movie-name">午夜巴士</th>
+						<th class="cinema-name">曹杨影城</th>
+						<th class="cinema-address">兰溪路125号2楼</th>
+						<th class="price">80元</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>

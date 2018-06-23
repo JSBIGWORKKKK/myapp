@@ -8,12 +8,17 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<style>
 			.profire {
-
 				width: 110%;
 				margin: 2px auto;
+				table-layout: fixed;
+				-moz-text-overflow: ellipsis;
+				/* for Firefox,mozilla,在chrome中测试也通过了*/
+				overflow: hidden;
+				white-space: nowrap;
 			}
-			body{
-				font-family: "微软雅黑";  
+			
+			body {
+				font-family: "微软雅黑";
 				font-weight: 400;
 				font-size: 13px;
 			}
@@ -21,13 +26,12 @@
 			img {
 				width: 100%;
 			}
-
+			
 			@media (max-width: 1239px) {
 				/*#now{
 					margin-left: 10%;
 					width: 80%;
 				}*/
-				
 				img {
 					width: 100%;
 				}
@@ -37,20 +41,18 @@
 			}
 			
 			@media (max-width: 500px) {
-				
 				/*#now{
 					margin-left: 0;
 					width: 100%;
 				}*/
-				img{
+				img {
 					width: 170%;
 				}
 			}
-			.movie-card{
+			
+			.movie-card {
 				display: none;
 			}
-			
-
 		</style>
 	</head>
 
@@ -58,17 +60,19 @@
 		<header>
 			<nav class="navbar navbar-default">
 
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header" style="width: 100%;">
-					<a class="navbar-brand col-xs-5" style="font-size: small;">杭州</a>
-					<a class="navbar-brand col-xs-5" href="index.html">淘表表</a>
-					<div class="navbar-brand col-xs-1">
-						<a class="glyphicon glyphicon-search col-xs-1 col-xs-offset-11" style="color: #777;" href="search_movie.html"></a>
+				<div class="container-fluid">
+					<div class="navbar-header" style="width: 100%;">
+						<a class="navbar-brand col-xs-5" style="font-size: small;">杭州</a>
+						<a class="navbar-brand col-xs-4" href="index.html">淘表表</a>
+						<div class="navbar-brand col-xs-1">
+							<a class="glyphicon glyphicon-search col-xs-1" style="color: #777;" href="search_movie.html"></a>
+						</div>
+						<div class="navbar-brand col-xs-1">
+							<a class="glyphicon glyphicon-plus col-xs-1 col-xs-offset-11" style="color: #777;" href="add_movie.html"></a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
 
 			<ul id="myTab" class="nav nav-tabs" style="margin-top: -25px;">
 				<li class="active">
@@ -96,7 +100,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="movie-card panel panel-default col-md-4"id="csyx" style="margin-top:-10px ;">
+				<div class="movie-card panel panel-default col-md-4" style="margin-top:-10px ;">
 					<div class="panel-body">
 						<div>
 
@@ -122,7 +126,7 @@
 					</div>
 					<div class="panel-footer" style="height: 40px;">
 
-						<p class="moviecomment" style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">影评&nbsp;</span>不要总想权宜之计</p>
+						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">影评&nbsp;</span ><span class="moviecomment">不要总想权宜之计</span></p>
 
 					</div>
 				</div>
@@ -169,7 +173,7 @@
 									<p class="profire" style="font:'微软雅黑';font:;">哆啦A梦：大雄的金银岛</p>
 									<p class="profire">观众评分<span style="color: orange;font-weight: 800;">8.1</span></p>
 									<p class="profire">导演：今井一晓</p>
-									<p class="profire">主演：水田山葵,大原惠美,嘉数…</p>
+									<p class="profire">主演：水田山葵,大原惠美</p>
 								</div>
 								<div class="col-xs-4 col-md-12">
 
@@ -276,10 +280,10 @@
 
 			</div>
 
-			<div class="tab-pane fade" id="after">  
+			<div class="tab-pane fade" id="after">
 				<div style="width: 100%; height:10px;"></div>
 				<!--1-->
-				<div class="panel panel-default col-md-4" style="margin-top: -10px;"  onclick="window.location.href='x_movie_mcgj.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_mcgj.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -303,9 +307,9 @@
 						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">燃爆&nbsp;</span>生死肉搏就在眼前</p>
 					</div>-->
 				</div>
-				
+
 				<!--2-->
-				<div class="panel panel-default col-md-4"  style="margin-top: -10px;" onclick="window.location.href='x_movie_xmz.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_xmz.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -328,10 +332,9 @@
 						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">燃爆&nbsp;</span>生死肉搏就在眼前</p>
 					</div>-->
 				</div>
-				
-				
+
 				<!--3-->
-				<div class="panel panel-default col-md-4"  style="margin-top: -10px;" onclick="window.location.href='x_movie_x13.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_x13.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -357,9 +360,9 @@
 						<p style="align-content: center;color: black; font-size: small;" style="margin-top: -5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 800;color: orange;">燃爆&nbsp;</span>生死肉搏就在眼前</p>
 					</div>-->
 				</div>
-				
+
 				<!--4-->
-				<div class="panel panel-default col-md-4"  style="margin-top: -10px;" onclick="window.location.href='x_movie_cr2.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_cr2.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -383,7 +386,7 @@
 					</div>-->
 				</div>
 				<!--5-->
-				<div class="panel panel-default col-md-4" style="margin-top: -10px;"  onclick="window.location.href='x_movie_mtydy.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_mtydy.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -408,7 +411,7 @@
 					</div>-->
 				</div>
 				<!--6-->
-				<div class="panel panel-default col-md-4"  style="margin-top: -10px;" onclick="window.location.href='x_movie_dxxm.html'">
+				<div class="panel panel-default col-md-4" style="margin-top: -10px;" onclick="window.location.href='x_movie_dxxm.html'">
 					<div class="panel-body">
 						<div>
 							<div class="col-xs-3 col-md-5">
@@ -435,7 +438,7 @@
 				</div>
 			</div>
 			<div class="tab-pane fade" id="mylike">
-				
+
 				<div style="width: 100%; height:10px;"></div>
 			</div>
 		</div>
@@ -451,34 +454,33 @@
 			{
 				let req = new XMLHttpRequest();
 				req.open("get", "sql/detail", true);
-				req.onload=function(e){
-					var detail=JSON.parse(req.response);
+				req.onload = function(e) {
+					var detail = JSON.parse(req.response);
 					console.log(JSON.parse(req.response));
-					var panel=document.getElementsByClassName("movie-card")[0];
+					var panel = document.getElementsByClassName("movie-card")[0];
 					//console.log(panel);
-					for (var d of detail)
-					{
-						var now=panel.cloneNode(true);
-						var name=d.name;
+					for(var d of detail) {
+						var now = panel.cloneNode(true);
+						var name = d.name;
 						console.log(d.name);
-						let id=d.id;
-						var score="评分"+d.score;
-						var director="导演："+d.director;
-						var actor="演员："+d.actor;
-						var comment="影评："+d.comment;
-						now.getElementsByClassName("moviename")[0].textContent=name;
-						now.getElementsByClassName("moviescore")[0].textContent=score;
-						now.getElementsByClassName("moviedirector")[0].textContent=director;
-						now.getElementsByClassName("movieactor")[0].textContent=actor;
-						now.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
-						now.getElementsByClassName("moviecomment")[0].textContent=comment;
-						now.onclick=function(){
+						let id = d.id;
+						var score = "评分" + d.score;
+						var director = "导演：" + d.director;
+						var actor = "演员：" + d.actor;
+						var comment = "影评：" + d.comment;
+						now.getElementsByClassName("moviename")[0].textContent = name;
+						now.getElementsByClassName("moviescore")[0].textContent = score;
+						now.getElementsByClassName("moviedirector")[0].textContent = director;
+						now.getElementsByClassName("movieactor")[0].textContent = actor;
+						now.getElementsByClassName("movieimage")[0].src = "img/" + id + ".jpg"
+						now.getElementsByClassName("moviecomment")[0].textContent = comment;
+						now.onclick = function() {
 							//window.location.href="movie_"+id+".html";
-							window.location.href="movie_detail.html?"+id;
+							window.location.href = "movie_detail.html?" + id;
 						}
 						//console.log(now.onclick);
-						var bd=document.getElementById("now");
-						now.style.display="block";
+						var bd = document.getElementById("now");
+						now.style.display = "block";
 						bd.appendChild(now);
 					}
 				}
@@ -490,41 +492,41 @@
 				let req = new XMLHttpRequest();
 				req.open("get", "sql/mylike?account=" + localStorage.getItem("account"), true);
 				req.onload = function(e) {
-						var detail = JSON.parse(req.response);
-						console.log(JSON.parse(req.response));
-						var panel=document.getElementsByClassName("movie-card")[0];
-						//console.log(detail);
-						for (var d of detail)
-						{
-							var now=panel.cloneNode(true);
-							var name=d.name;
-							console.log(d.name);
-							let id=d.id;
-							var score="评分"+d.score;
-							var director="导演："+d.director;
-							var actor="演员："+d.actor;
-							var comment="影评："+d.comment;
-							now.getElementsByClassName("moviename")[0].textContent=name;
-							now.getElementsByClassName("moviescore")[0].textContent=score;
-							now.getElementsByClassName("moviedirector")[0].textContent=director;
-							now.getElementsByClassName("movieactor")[0].textContent=actor;
-							now.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
-							now.getElementsByClassName("moviecomment")[0].textContent=comment;
-							now.onclick=function(){
-								//window.location.href="movie_"+id+".html";
-								window.location.href="movie_detail.html?"+id;
-							}
-							//console.log(now.onclick);
-							var bd=document.getElementById("mylike");
-							now.style.display="block";
-							bd.appendChild(now);
+					var detail = JSON.parse(req.response);
+					console.log(JSON.parse(req.response));
+					var panel = document.getElementsByClassName("movie-card")[0];
+					//console.log(detail);
+					for(var d of detail) {
+						var now = panel.cloneNode(true);
+						var name = d.name;
+						console.log(d.name);
+						let id = d.id;
+						var score = "评分" + d.score;
+						var director = "导演：" + d.director;
+						var actor = "演员：" + d.actor;
+						//var comment="影评："+d.comment;
+						var comment = d.comment;
+						now.getElementsByClassName("moviename")[0].textContent = name;
+						now.getElementsByClassName("moviescore")[0].textContent = score;
+						now.getElementsByClassName("moviedirector")[0].textContent = director;
+						now.getElementsByClassName("movieactor")[0].textContent = actor;
+						now.getElementsByClassName("movieimage")[0].src = "img/" + id + ".jpg"
+						now.getElementsByClassName("moviecomment")[0].textContent = comment;
+						now.onclick = function() {
+							//window.location.href="movie_"+id+".html";
+							window.location.href = "movie_detail.html?" + id;
 						}
+						//console.log(now.onclick);
+						var bd = document.getElementById("mylike");
+						now.style.display = "block";
+						bd.appendChild(now);
 					}
-					req.setRequestHeader("Content-Type", "application/json");
-					req.send("");
+				}
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send("");
 			}
 		</script>
-		
+
 	</body>
 
 </html>
