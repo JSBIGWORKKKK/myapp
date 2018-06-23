@@ -9,12 +9,11 @@
 		<style>
 			.profire {
 				margin: 2px auto;
-			}
-			
-			@media (min-width: 500px) {
-				.profire {
-					margin-left: 20%;
-				}
+				table-layout: fixed;
+				-moz-text-overflow: ellipsis;
+				/* for Firefox,mozilla,在chrome中测试也通过了*/
+				overflow: hidden;
+				white-space: nowrap;
 			}
 			
 			tr th {
@@ -24,12 +23,23 @@
 			tr td {
 				text-align: center;
 			}
+			
+			@media (min-width: 500px) {
+				.profire {
+					margin-left: 20%;
+					display: block;
+					-moz-text-overflow: ellipsis;
+					/* for Firefox,mozilla,在chrome中测试也通过了*/
+					overflow: hidden;
+					white-space: nowrap;
+				}
+			}
 		</style>
 	</head>
 
 	<body>
 		<!-- 导航栏-->
-		<nav class="navbar navbar-fixed-top" style="background: #FF7F7F;">
+		<nav class="moviehead navbar navbar-fixed-top" style="background: #FF7F7F;">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header" style="width: 100%;">
@@ -44,15 +54,15 @@
 		</nav>
 		<!-- 导航栏-->
 		<div>
-			<div style="height: 177px; background:  #FF7F7F;margin-top: 50px; color: white;width: 100%;">
+			<div class="moviebackground" style="height: 177px; background:  #FF7F7F;margin-top: 50px; color: white;width: 100%;">
 				<div style="margin: 0 10px 0 10px;">
 
 					<div id="movieplan " class="col-xs-7">
-						<p class="profire moviename" style="margin-top: 20px;font-size: large;">厕所英雄</p>
-						<p class="profire movieename" style="font-size: small;">Toilet-Ek Prem Katha</p>
-						<p class="profire movietype" style="margin-top: 5px;font-size: small;">剧情/喜剧</p>
-						<p class="profire movietime" style="font-size: small;">印度|150分钟</p>
-						<p class="profire moviectime" style="font-size: small;">2018-06-08 在中国大陆上映<span class="glyphicon glyphicon-triangle-right" style="color: white;"></span></p>
+						<div class="profire moviename" style="margin-top: 20px;font-size: large;">厕所英雄</div>
+						<div class="profire movieename" style="font-size: small;">Toilet-Ek Prem Katha</div>
+						<div class="profire movietype" style="margin-top: 5px;font-size: small;">剧情/喜剧</div>
+						<div class="profire movietime" style="font-size: small;">印度|150分钟</div>
+						<div class="profire moviectime" style="font-size: small;">2018-06-08 在中国大陆上映<span class="glyphicon glyphicon-triangle-right" style="color: white;"></span></div>
 						<!--<p class="profire">观众评分<span style="color: orange;font-weight: 800;">6.8</span></p>
 								<p class="profire">导演：吗支撑</p>
 								<p class="profire">主演：买早餐·没注册</p>-->
@@ -62,7 +72,7 @@
 					</div>
 				</div>
 			</div>
-			<div style="height: 50px;margin-top: 10px;">
+			<div style="height: 75px;margin-top: 10px;">
 				<div>
 					<div class="col-xs-5 col-xs-offset-1">
 						<p style="font-size: larger;color: black; font-weight: 600;">
@@ -73,14 +83,14 @@
 							<span class="glyphicon glyphicon-star" style="color: #FFAA2A;font-size: small;"></span>
 							<span class="glyphicon glyphicon-star-empty" style="color: #FFAA2A;font-size: small;"></span>
 						</p>
-						<p style="font-size: smaller;color: #B4B4B4; margin-top: -5px;">观众评分66,070人<span class="glyphicon glyphicon-triangle-right"></span></p>
+						<p style="font-size: smaller;color: #B4B4B4; margin-top: -5px;"><span class="movieaccountscore">观众评分66,070人</span><span class="glyphicon glyphicon-triangle-right"></span></p>
 					</div>
 					<div class="col-xs-3">
-						<p style="font-size: larger;color: black; font-weight: 600;">39%</p>
+						<p class="movierecommend" style="font-size: larger;color: black; font-weight: 600;">39%</p>
 						<p style="font-size: smaller;color: #B4B4B4; margin-top: -5px;">V淘推荐度</p>
 					</div>
 					<div class="col-xs-3">
-						<p style="font-size: larger;color: black; font-weight: 600;">36738</p>
+						<p class="moviewanted" style="font-size: larger;color: black; font-weight: 600;">36738</p>
 						<p style="font-size: smaller;color: #B4B4B4; margin-top: -5px;">想看人数</p>
 					</div>
 				</div>
@@ -88,7 +98,7 @@
 			<div class="col-md-offset-1 col-md-10" style="height: 50px;margin-top: 10px;">
 				<div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<button id="like"type="button" class="btn btn-default" style="width: 100%;"><span class="glyphicon glyphicon-heart" style="color: #B4B4B4;"></span>&nbsp;收藏</button>
+						<button id="like" type="button" class="btn btn-default" style="width: 100%;"><span class="glyphicon glyphicon-heart" style="color: #B4B4B4;"></span>&nbsp;收藏</button>
 					</div>
 					<div class="col-xs-5">
 						<button type="button" class="btn btn-default" style="width: 100%;"><span class="glyphicon glyphicon-star" style="color: #B4B4B4;"></span>&nbsp;看过</button>
@@ -96,7 +106,7 @@
 				</div>
 			</div>
 			<div class="col-md-offset-1 col-md-10" class="container">
-				<p class="movieinfo"style="text-indent: 25px;">改编自真人真事，探讨印度农村家庭普遍没有厕所，妇女必须在野外如厕的现象。女主角担任教师，嫁给男主角后，发现家中没有厕所，和男主角“闹离婚”，还来了一场革命。</p>
+				<p class="movieinfo" style="text-indent: 25px;">改编自真人真事，探讨印度农村家庭普遍没有厕所，妇女必须在野外如厕的现象。女主角担任教师，嫁给男主角后，发现家中没有厕所，和男主角“闹离婚”，还来了一场革命。</p>
 			</div>
 			<div class="col-md-offset-1 col-md-10" style="height: 100px;">
 				<table class="table table-striped">
@@ -208,8 +218,8 @@
 		<script>
 			var id = window.location.search;
 			id = id.slice(1);
-			var likebtn=document.getElementById("like");
-			likebtn.addEventListener("click",function(){
+			var likebtn = document.getElementById("like");
+			likebtn.addEventListener("click", function() {
 				let req = new XMLHttpRequest();
 				var data = {
 					account: localStorage.getItem("account"),
@@ -219,36 +229,41 @@
 				req.setRequestHeader("Content-Type", "application/json");
 				req.send(JSON.stringify(data));
 				req.onload = function(e) {
-					if (req.response=="fail")
-					alert("你已经收藏了！")
+					if(req.response == "fail")
+						alert("你已经收藏了！")
 					else
-					alert("收藏成功！");
+						alert("收藏成功！");
 				}
 			});
 			let req = new XMLHttpRequest();
-			req.open("get", "sql/detail?id="+id, true);
+			req.open("get", "sql/detail?id=" + id, true);
 			req.onload = function(e) {
 				var detail = JSON.parse(req.response);
-				var d=detail[0];
+				var d = detail[0];
+				console.log(d);
 				document.getElementsByClassName("moviename")[0].textContent = d.name;
 				document.getElementsByClassName("movieename")[0].textContent = d.ename;
 				document.getElementsByClassName("movietype")[0].textContent = d.type;
 				document.getElementsByClassName("movietime")[0].textContent = d.mtime;
 				document.getElementsByClassName("moviectime")[0].textContent = d.ctime;
 				document.getElementsByClassName("movieinfo")[0].textContent = d.info;
-				document.getElementsByClassName("movieimage")[0].src="img/"+id+".jpg"
+				document.getElementsByClassName("movieimage")[0].src = "img/" + id + ".jpg"
 				document.getElementsByClassName("moviescore")[0].textContent = d.score;
+				document.getElementsByClassName("moviebackground")[0].style.background = d.background;
+				document.getElementsByClassName("moviehead")[0].style.background = d.background;
+				document.getElementsByClassName("movieaccountscore")[0].textContent="观众评分"+d.accountscore+"人";
+				document.getElementsByClassName("movierecommend")[0].textContent=d.recommend+"%";
+				document.getElementsByClassName("moviewanted")[0].textContent=d.wanted;
 			}
 			req.setRequestHeader("Content-Type", "application/json");
 			req.send("");
-			var btns=document.getElementsByClassName("btn-danger");
-			
-			let k=0;
-			for (let btn of btns)
-			{
+			var btns = document.getElementsByClassName("btn-danger");
+
+			let k = 0;
+			for(let btn of btns) {
 				k++;
 				//console.log(btn);
-				btn.href="buy.html?"+id+"-"+k;
+				btn.href = "buy.html?" + id + "-" + k;
 			}
 		</script>
 

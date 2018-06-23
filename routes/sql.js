@@ -82,6 +82,10 @@ router.get("/detail", function(req, res, next) {
 			now.ctime=row.ctime;
 			now.info=row.info;
 			now.type=row.type;
+			now.background=row.background;
+			now.wanted=row.wanted;
+			now.recommend=row.recommend;
+			now.accountscore=row.accountscore;
 			ans.push(now);
 		}
 		console.log(ans);
@@ -99,7 +103,7 @@ router.get("/detail", function(req, res, next) {
 			{
 				var now={};
 				now.id=row.id;
-				now.name=row.name;
+				//now.name=row.name;
 				now.score=row.score;
 				now.director=row.director;
 				now.actor=row.actor;
@@ -109,6 +113,10 @@ router.get("/detail", function(req, res, next) {
 				now.ctime=row.ctime;
 				now.info=row.info;
 				now.type=row.type;
+				now.background=row.background;
+				now.wanted=row.wanted;
+				now.recommend=row.recommend;
+				now.accountscore=row.accountscore;
 				ans.push(now);
 			}
 			console.log(ans);
@@ -192,7 +200,7 @@ router.post("/like", function(req, res, next) {
 	console.log(qq);
 	connection.query(qq, function(err, rows, fields) {
 		if(err) throw err;
-		if (rows.length) res.send("fail");
+		if (rows.length) {res.send("fail"); return;}
 		let qq = "INSERT INTO movie.mylike (account, movieid) VALUES ('"+req.body.account+"','"+req.body.id+"')";
 		console.log(qq);
 		connection.query(qq, function(err, rows, fields) {

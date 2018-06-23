@@ -1,0 +1,65 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<style type="text/css">
+
+</style>
+
+<body>
+	<!--<div class="box"id="left"></div>
+	
+	<div class="box"id="right"></div>
+	
+	<div class="box"id="up"></div>-->
+
+	<div class="inputmy">
+		<div class="input-group">
+			<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+			<input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+		</div>
+		<br>
+		<!--下面是密码输入框-->
+		<div class="input-group">
+			<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+			<input id="passWord" type="text" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+
+		</div>
+		<br>
+		<!--下面是登陆按钮,包括颜色控制-->
+		<div style="width:100%">
+			<button id="login" type="button" style="width:45%;float:left;margin-right:10px" class="btn btn-default">登 录</button>
+			<button id="register" type="button" style="width:45%;float:left" class="btn btn-default">注 册</button>
+		</div>
+	</div>
+	<script>
+		//localStorage.clear();
+		var login = document.querySelector("#login");
+		login.addEventListener("click", function() {
+			var userName = document.querySelector("#userName").value;
+			var passWord = document.querySelector("#passWord").value;
+			if(localStorage.getItem(userName)) {
+				//console.log(localStorage.getItem(userName));
+				if(localStorage.getItem(userName) != passWord)
+					alert("密码错误");
+				else {
+					var inputmy = document.querySelector(".inputmy");
+					inputmy.style = "display:none";
+					alert("登录成功");
+					localStorage.setItem("account", userName);
+					window.location.href = "movie.html";
+					//runGame(GAME_LEVELS, DOMDisplay);
+				}
+			} else
+				alert("用户不存在");
+		});
+		var reg = document.querySelector("#register");
+		reg.addEventListener("click", function() {
+			self.location = "register.html";
+		});
+	</script>
+	</div>
+	<script>
+		//runGame(GAME_LEVELS, DOMDisplay);
+	</script>
+
+</body>

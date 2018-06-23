@@ -1,0 +1,74 @@
+<head>
+	<link rel="stylesheet" href="css2/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8"></meta>
+	<style>
+	
+		
+		.back {
+			position: fixed;
+			width: 100%;
+			display: block;
+			z-index: -100;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header" style="width: 100%;">
+				<a class="navbar-brand col-xs-5 glyphicon glyphicon-menu-left" style="font-size: small;" style="color: white;" href="index.html"></a>
+				<a class="navbar-brand col-xs-5" href="index.html">淘表表</a>
+				<div class="navbar-brand col-xs-1">
+					<a class="glyphicon glyphicon-search col-xs-1 col-xs-offset-11" style="color: #777;" href="search_movie.html"></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div id="test">
+		<img src="img/login_back.jpg" class="back" id="Background">
+		<div class="col-xs-4 col-xs-offset-8" style="background: white; margin-top: 10%;">
+			<div class="input-group" style="margin: 5px 5px 5px 5px">
+				 <!--<span class="input-group-addon" id="basic-addon1">@</span>--> 
+				<input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<!--下面是密码输入框-->
+			<div class="input-group" style="margin: 0 5px 5px 5px;">
+				<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+				<input id="passWord" type="text" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+
+			</div>
+			<br>
+			<!--下面是登陆按钮,包括颜色控制-->
+			<div style="width:100%">
+				<button id="register" type="button" style="width:100%;float:left;margin-bottom: 5px;" class="btn btn-default">注 册</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="jquery/jquery-1.11.0.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		var reg = document.querySelector("#register");
+		//var dic=JSON.parse(localStorage.getItem("accounts"));
+		//console.log(dic);
+		reg.addEventListener("click", function() {
+			var userName = document.querySelector("#userName").value;
+			var passWord = document.querySelector("#password").value;
+			if(localStorage.getItem(userName))
+				alert("用户已存在！");
+			else
+			if(userName.length > 20)
+				alert("用户名长度不能大于20！");
+			else {
+				localStorage.setItem(userName, passWord);
+				alert("注册成功！");
+				self.location = "login.html";
+			}
+		});
+	</script>
+</body>
