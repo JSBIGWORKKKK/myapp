@@ -192,7 +192,7 @@ router.post("/like", function(req, res, next) {
 	console.log(qq);
 	connection.query(qq, function(err, rows, fields) {
 		if(err) throw err;
-		if (rows.length) res.send("fail");
+		if (rows.length) {res.send("fail");return;}
 		let qq = "INSERT INTO movie.mylike (account, movieid) VALUES ('"+req.body.account+"','"+req.body.id+"')";
 		console.log(qq);
 		connection.query(qq, function(err, rows, fields) {
