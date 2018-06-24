@@ -67,7 +67,7 @@
 						<div class="navbar-brand col-xs-1">
 							<a class="glyphicon glyphicon-search col-xs-1" style="color: #777;" href="search_movie.html"></a>
 						</div>
-						<div class="navbar-brand col-xs-1">
+						<div class="navbar-brand col-xs-1" id="addmovie">
 							<a class="glyphicon glyphicon-plus col-xs-1 col-xs-offset-11" style="color: #777;" href="add_movie.html"></a>
 						</div>
 					</div>
@@ -452,6 +452,11 @@
 		<script>
 			//刷新当前电影
 			{
+				var addmovie=document.getElementById("addmovie");
+				if (localStorage.getItem("account")=="admin")
+				addmovie.style.display="block";
+				else addmovie.style.display="none";
+				
 				let req = new XMLHttpRequest();
 				req.open("get", "sql/detail", true);
 				req.onload = function(e) {
