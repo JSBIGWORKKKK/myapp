@@ -15,77 +15,130 @@
 				<div class="navbar-header" style="width: 100%;">
 					<a class="navbar-brand col-xs-5 glyphicon glyphicon-menu-left" style="font-size: small;" style="color: white;" href="movie.html"></a>
 					<a class="navbar-brand col-xs-5" href="index.html">淘表表</a>
-					
+
 				</div>
 			</div>
 		</nav>
+		<!--<form action="sql/insert" method="post">
+			ID：<input id="username" type="text" name="username" /> 
+			Password：<input id="password" type="password" name="password" />
+			<input type="submit" value="Submit" />
+		</form>-->
 		<div class="container">
-			<form>
+			<form id="myform" name="myform" action="sql/insert" method="post" target="nm_iframe">
 				<div class="form-group">
 					<label for="id">id</label>
-					<input type="text" class="form-control" id="id" placeholder="id">
+					<input type="text" class="form-control" id="id" name="id" placeholder="id">
 				</div>
 				<div class="form-group">
 					<label for="name">name</label>
-					<input type="text" class="form-control" id="name" placeholder="name">
+					<input type="text" class="form-control" id="name" name="name" placeholder="name">
 				</div>
 				<div class="form-group">
 					<label for="score">score</label>
-					<input type="text" class="form-control" id="score" placeholder="score">
+					<input type="text" class="form-control" id="score" name="score" placeholder="score">
 				</div>
 				<div class="form-group">
 					<label for="director">director</label>
-					<input type="text" class="form-control" id="director" placeholder="director">
+					<input type="text" class="form-control" id="director" name="director" placeholder="director">
 				</div>
 				<div class="form-group">
 					<label for="actor">actor</label>
-					<input type="text" class="form-control" id="actor" placeholder="actor">
+					<input type="text" class="form-control" id="actor" name="actor" placeholder="actor">
 				</div>
 				<div class="form-group">
 					<label for="image">image</label>
-					<input type="text" class="form-control" id="image" placeholder="image">
+					<input type="text" class="form-control" id="image" name="image" placeholder="image">
+				</div>
+				<div class="form-group">
+					<label for="ename">ename</label>
+					<input type="text" class="form-control" id="ename" name="ename" placeholder="ename">
 				</div>
 				<div class="form-group">
 					<label for="comment">comment</label>
-					<input type="text" class="form-control" id="comment" placeholder="comment">
+					<input type="text" class="form-control" id="comment" name="comment" placeholder="comment">
 				</div>
 				<div class="form-group">
 					<label for="type">type</label>
-					<input type="text" class="form-control" id="type" placeholder="type">
+					<input type="text" class="form-control" id="type" name="type" placeholder="type">
 				</div>
 				<div class="form-group">
 					<label for="mtime">mtime</label>
-					<input type="text" class="form-control" id="mtime" placeholder="mtime">
+					<input type="text" class="form-control" id="mtime" name="mtime" placeholder="mtime">
 				</div>
 				<div class="form-group">
 					<label for="ctime">ctime</label>
-					<input type="text" class="form-control" id="ctime" placeholder="ctime">
+					<input type="text" class="form-control" id="ctime" name="ctime" placeholder="ctime">
 				</div>
 				<div class="form-group">
 					<label for="info">info</label>
-					<input type="text" class="form-control" id="info" placeholder="info">
+					<input type="text" class="form-control" id="info" name="info" placeholder="info">
 				</div>
 				<div class="form-group">
 					<label for="background">background</label>
-					<input type="text" class="form-control" id="background" placeholder="background">
+					<input type="text" class="form-control" id="background" name="background" placeholder="background">
 				</div>
 				<div class="form-group">
 					<label for="recommend">recommend</label>
-					<input type="text" class="form-control" id="recommend" placeholder="recommend">
+					<input type="text" class="form-control" id="recommend" name="recommend" placeholder="recommend">
 				</div>
 				<div class="form-group">
 					<label for="wanted">wanted</label>
-					<input type="text" class="form-control" id="wanted" placeholder="wanted">
+					<input type="text" class="form-control" id="wanted" name="wanted" placeholder="wanted">
 				</div>
 				<div class="form-group">
 					<label for="accountscore">accountscore</label>
-					<input type="text" class="form-control" id="accountscore" placeholder="accountscore">
+					<input type="text" class="form-control" id="accountscore" name="accountscore" placeholder="accountscore">
 				</div>
 
-				<button type="submit" class="btn btn-default">Submit</button>
+				<!--<button type="submit" class="btn btn-default">Submit</button>-->
 			</form>
+			<button id="btn-submit" onclick="Submit()">Submit</button>
+			<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>   
 		</div>
+		<script>
+			function aftersubmit() {
+				
+			}
 
+			function Submit() {
+				var myform = document.getElementById("myform");
+				console.log(myform.id.value);
+				var req = new XMLHttpRequest();
+				req.open('get', 'sql/detail/?id=' + myform.id.value);
+				req.onload = function() {
+					var detail = JSON.parse(req.response);
+					if(!detail.length) {
+						myform.submit(aftersubmit);
+						alert("添加成功！");
+						location.href = "movie.html";
+					} else {
+						alert("id重复了！");
+					}
+				};
+				req.send();
+				//				myform.submit();
+				//				alert("添加成功！");
+				//				location.href="movie.html";
+				//				var formData = new FormData(document.querySelector("form"));
+				//				console.log(formData);
+				//				console.log(document.querySelector("form"));
+				//				// 2.创建一个http请求对象
+				//				var xmlHttpRequest = new XMLHttpRequest();
+				//
+				//				xmlHttpRequest.open('post', 'sql/insert');
+				//				xmlHttpRequest.onload = function(resp) {
+				//					if(xmlHttpRequest.status == 200) {
+				//						alert('提交成功！');
+				//						location.href="movie.html";
+				//					} else {
+				//						alert('Error:' + xmlHttpRequest.status);
+				//					}
+				//				};
+				//				xmlHttpRequest.send(formData);
+
+			}
+		</script>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="jquery/jquery-1.11.0.min.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

@@ -34,6 +34,9 @@
 					white-space: nowrap;
 				}
 			}
+			.moviehead{
+				background: #FF7F7F;
+			}
 		</style>
 	</head>
 
@@ -47,7 +50,7 @@
 					<a class="navbar-brand col-xs-5 col-sm-5 col-md-5 col-lg-5 glyphicon glyphicon-menu-left" style="color: white;" href="javascript:;" onclick="javascript:history.back();"></a>
 
 					<a class="navbar-brand col-xs-3 col-sm-6 col-md-6 col-lg-6"></a>
-					<a class="navbar-brand glyphicon glyphicon-share col-xs-2 col-xs-offset-2 col-sm-1 col-md-1 col-lg-1" style="color: white;" href="#"></a>
+					<a id="del"class="navbar-brand glyphicon glyphicon-ban-circle col-xs-2 col-xs-offset-2 col-sm-1 col-md-1 col-lg-1" style="color: white;" ></a>
 				</div>
 			</div>
 
@@ -216,6 +219,24 @@
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 		<script src="js/bootstrap.min.js"></script>
 		<script>
+			var delbtn=document.getElementById("del");
+			if(localStorage.getItem("account")=="admin")
+			delbtn.style.display="block";
+			else
+			delbtn.style.display="none";
+			delbtn.addEventListener("click",function(){
+				let req = new XMLHttpRequest();
+				var data = {
+					id: id
+				};
+				req.open("delete", "sql/", true);
+				req.setRequestHeader("Content-Type", "application/json");
+				req.send(JSON.stringify(data));
+				req.onload = function(e) {
+					alert("删除成功");
+					location.href="movie.html";
+				}
+			});
 			var id = window.location.search;
 			id = id.slice(1);
 			var likebtn = document.getElementById("like");
