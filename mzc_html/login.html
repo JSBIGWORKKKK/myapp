@@ -6,7 +6,15 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="jquery/jquery-1.11.0.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="js/bootstrap.min.js"></script>
 		<style>
+			.carousel-inner>.item>a>img {
+				height: 281.5px;
+			}
+			
 			.back {
 				position: fixed;
 				background-size: cover;
@@ -19,11 +27,21 @@
 				margin-top: 10%;
 			}
 			
-			@media (max-width: 500px) {
-				
+			#myCarousel {
+				display: block;
+				margin-top: 10%;
+			}
+			
+			@media (max-width: 768px) {
 				.back {
 					width: auto;
 					background-size: cover;
+				}
+				/*#myCarousel {
+					display: none;
+				}*/
+				.carousel-inner>.item>a>img {
+					height: 150px;
 				}
 			}
 		</style>
@@ -46,7 +64,26 @@
 
 		<div id="test" style="margin-top: -20px;">
 			<img src="img/beautiful.png" class="back" id="Background">
-			<div class="inputmy col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-8 kuang">
+			<div id="myCarousel" class="carousel slide col-sm-9 col-xs-12">
+				<!-- 轮播（Carousel）指标 -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+				</ol>
+				<!-- 轮播（Carousel）项目 -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<a href="img1.html"><img class="imggg" src="img/carousel1.png" alt="First slide"></a>
+					</div>
+					<div class="item">
+						<a href="img2.html"><img class="imggg" src="img/carousel2.jpg" alt="Second slide"></a>
+					</div>
+				</div>
+				<!-- 轮播（Carousel）导航 -->
+				<a class="carousel-control left" href="#myCarousel" data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+				<a class="carousel-control right" href="#myCarousel" data-slide="next"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+			<div class="inputmy col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 kuang">
 				<div class="movie-card panel panel-default">
 					<div class="panel-heading">
 						<div style="font-size: 20px; text-align: center;color: dodgerblue;">用户登录</div>
@@ -74,10 +111,7 @@
 
 			</div>
 		</div>
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="jquery/jquery-1.11.0.min.js"></script>
-		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="js/bootstrap.min.js"></script>
+
 		<script>
 			//localStorage.clear();
 			var login = document.querySelector("#login");
