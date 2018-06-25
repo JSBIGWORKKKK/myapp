@@ -24,8 +24,15 @@
 			Password：<input id="password" type="password" name="password" />
 			<input type="submit" value="Submit" />
 		</form>-->
+		<!--<form action="sql/insert" method="post"enctype='multipart/form-data' >
+			<input type="file" name="image" />
+			<input type="text" name="text"/>
+			<input type="submit" value="上传文件" />
+		</form>
+			-->
+			
 		<div class="container">
-			<form id="myform" name="myform" action="sql/insert" method="post" target="nm_iframe">
+			<form id="myform" enctype='multipart/form-data' name="myform" action="sql/insert" method="post" target="nm_iframe" >
 				<div class="form-group">
 					<label for="id">id</label>
 					<input type="text" class="form-control" id="id" name="id" placeholder="id">
@@ -48,7 +55,7 @@
 				</div>
 				<div class="form-group">
 					<label for="image">image</label>
-					<input type="text" class="form-control" id="image" name="image" placeholder="image">
+					<input type="file" class="form-control" id="image" name="image" placeholder="image">
 				</div>
 				<div class="form-group">
 					<label for="ename">ename</label>
@@ -90,11 +97,14 @@
 					<label for="accountscore">accountscore</label>
 					<input type="text" class="form-control" id="accountscore" name="accountscore" placeholder="accountscore">
 				</div>
+<<<<<<< HEAD
 				<div class="form-group">
 					<input type="file" name="content" />
 				</div>
 
 				<!--<button type="submit" class="btn btn-default">Submit</button>-->
+=======
+>>>>>>> master
 			</form>
 			<button id="btn-submit" onclick="Submit()">Submit</button>
 			<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>   
@@ -106,7 +116,17 @@
 
 			function Submit() {
 				var myform = document.getElementById("myform");
-				console.log(myform.id.value);
+				if (!myform.id.value)
+				{
+					alert("请填写id！");
+					return;
+				}
+				if (!myform.image.value)
+				{
+					alert("请上传图片！");
+					return;
+				}
+				
 				var req = new XMLHttpRequest();
 				req.open('get', 'sql/detail/?id=' + myform.id.value);
 				req.onload = function() {
@@ -114,7 +134,7 @@
 					if(!detail.length) {
 						myform.submit(aftersubmit);
 						alert("添加成功！");
-						location.href = "movie.html";
+						//location.href = "movie.html";
 					} else {
 						alert("id重复了！");
 					}
