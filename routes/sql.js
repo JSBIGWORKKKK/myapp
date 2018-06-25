@@ -1,11 +1,32 @@
 var express = require('express');
 var router = express.Router();
-
+var fs=require('fs');
+var multer=require('multer');
+var upload=multer({dest:'upload_tmp/'});
 /* GET users listing. */
 router.get("/sql/insert", function(req, res, next) {
 
 });
-
+//router.post('/insert', upload.any(), function(req, res, next) {
+//  console.log(req.files[0]);  // 上传的文件信息
+//
+//  var des_file = "./upload/" + req.files[0].originalname;
+//  fs.readFile( req.files[0].path, function (err, data) {
+//      fs.writeFile(des_file, data, function (err) {
+//          if( err ){
+//              console.log( err );
+//          }else{
+//              response = {
+//                  message:'File uploaded successfully',
+//                  filename:req.files[0].originalname
+//              };
+//              console.log( response );
+//              next();
+//              //res.end( JSON.stringify( response ) );
+//          }
+//      });
+//  });
+//});
 router.get("/mylike", function(req, res, next) {
 	var mysql = require('mysql');
 	var connection = mysql.createConnection({
@@ -51,7 +72,7 @@ router.get("/mylike", function(req, res, next) {
 				now.accountscore = row.accountscore;
 				ans.push(now);
 			}
-			console.log(ans);
+			//console.log(ans);
 			return res.json(ans);
 		});
 		//return res.json(ans);
@@ -92,7 +113,7 @@ router.get("/detail", function(req, res, next) {
 				now.accountscore = row.accountscore;
 				ans.push(now);
 			}
-			console.log(ans);
+			//console.log(ans);
 			return res.json(ans);
 		});
 	} else {
@@ -121,7 +142,7 @@ router.get("/detail", function(req, res, next) {
 				now.accountscore = row.accountscore;
 				ans.push(now);
 			}
-			console.log(ans);
+			//console.log(ans);
 			return res.json(ans);
 		});
 	}
@@ -153,6 +174,22 @@ router.post("/insert", function(req, res, next) {
 	req.body.wanted+"','"+
 	req.body.accountscore+"')";
 	console.log(qq);
+//	var des_file = "./upload/" + req.files[0].originalname;
+//  fs.readFile( req.files[0].path, function (err, data) {
+//      fs.writeFile(des_file, data, function (err) {
+//          if( err ){
+//              console.log( err );
+//          }else{
+//              response = {
+//                  message:'File uploaded successfully',
+//                  filename:req.files[0].originalname
+//              };
+//              console.log( response );
+//              //next();
+//              //res.end( JSON.stringify( response ) );
+//          }
+//      });
+//  });
 	connection.query(qq, function(err, rows, fields) {
 			if(err) throw err;
 			//work(res,connection,ID,1);
