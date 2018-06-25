@@ -134,7 +134,8 @@ router.post("/insert", function(req, res, next) {
 		password: '123456'
 	});
 	connection.connect();
-	var qq ="INSERT INTO movie.movie_detail VALUES('"+
+	var ID=req.body.id;
+	let qq ="INSERT INTO movie.movie_detail VALUES('"+
 	req.body.id+"','"+
 	req.body.name+"','"+
 	req.body.score+"','"+
@@ -154,11 +155,26 @@ router.post("/insert", function(req, res, next) {
 	console.log(qq);
 	connection.query(qq, function(err, rows, fields) {
 			if(err) throw err;
+			//work(res,connection,ID,1);
+			for (let i=1;i<=6;i++)
+			{
+				let qq="INSERT INTO movie.data VALUES ('"+ID+"-"+i+"','0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');"
+				console.log(qq);
+				connection.query(qq);
+			}
 			res.send();
-
 	});
 });
-
+function work(res,connection,ID,i)
+{
+	
+	let qq="INSERT INTO movie.data VALUES ('"+ID+"-"+i+"','0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000');"
+	console.log(qq);
+	connection.query(qq, function(err, rows, fields) {
+		if (i==6) res.send(); 
+		else work(res,connection,ID,i+1);
+	});
+}
 router.get(/\w*/, function(req, res, next) {
 	var mysql = require('mysql');
 	var connection = mysql.createConnection({
